@@ -1,10 +1,13 @@
+import { useCallback, useState } from "react";
+import { player2Layout } from "./playerLayout";
+
 function createBoard() {
   const grid = [];
 
   for (let i = 0; i < 10; i++) {
     grid[i] = [];
     for (let j = 0; j < 10; j++) {
-      grid[i][j] = `i:${i},j:${j}`;
+      grid[i][j] = [i, j];
     }
   }
 
@@ -13,7 +16,37 @@ function createBoard() {
 
 const grid = createBoard();
 
+const { shipTypes, layout } = player2Layout;
+
 export default function Home() {
+  const [waterList, setWaterList] = useState([]);
+  const [shipShotsList, setShipShotsList] = useState([]);
+  const [ships, setShips] = useState({});
+  const onClickBoard = useCallback(
+    (coord: [number, number]) => {
+      let currentShipShot;
+      let currenShipShotName;
+      layout.forEach((shipData) => {
+        const { positions, ship: shipName } = shipData;
+        positions.forEach((shipCoord) => {
+          if (shipCoord[0] === coord[0] && shipCoord[1] === coord[1]) {
+            currentShipShot = shipCoord;
+            currenShipShotName = shipName;
+          }
+        });
+      });
+
+      if (currentShipShot) {
+        ships[currenShipShotName] = ships[currenShipShotName] + 1;
+        setShips(ships);
+        setShipShotsList([...shipShotsList, currentShipShot]);
+      } else {
+        setWaterList([...waterList, coord]);
+      }
+    },
+    [ships, shipShotsList, waterList]
+  );
+
   return (
     <div>
       <div className="container mx-auto h-screen">
@@ -29,12 +62,32 @@ export default function Home() {
                 <span className="text-xl font-bold">Player 2</span>
               </div>
             </div>
+            <div>
+              <div>Carrier: {shipTypes.carrier.size}</div>
+              <div>Battlehsip: {shipTypes.battleship.size}</div>
+              <div>Cruiser: {shipTypes.cruiser.size}</div>
+              <div>Submarine: {shipTypes.submarine.size}</div>
+              <div>Destroyer: {shipTypes.destroyer.size}</div>
+            </div>
           </div>
           <div className="h-full md:w-8/12 p-20">
             <div className="w-full pb-full relative">
               <div className="top-0 left-0 absolute h-full w-full grid grid-cols-10 grid-rows-10 border-4 border-yellow-400">
                 {grid.flat().map((coord) => (
-                  <div className="col-span-1 row-span-1 border">{coord}</div>
+                  <div
+                    className="col-span-1 row-span-1 border w-full h-full bg-gray-50"
+                    onClick={() => onClickBoard(coord)}
+                  >
+                    {waterList.some(
+                      (el) => el[0] === coord[0] && el[1] === coord[1]
+                    )
+                      ? "w"
+                      : shipShotsList.some(
+                          (el) => el[0] === coord[0] && el[1] === coord[1]
+                        )
+                      ? "s"
+                      : "n"}
+                  </div>
                 ))}
               </div>
             </div>
