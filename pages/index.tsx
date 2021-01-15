@@ -83,20 +83,20 @@ export default function Home() {
             <div className="w-full pb-full relative">
               <div className="top-0 left-0 absolute h-full w-full grid grid-cols-10 grid-rows-10 border-4 border-yellow-400">
                 {grid.flat().map((coord) => {
-                  const cellBgClass = waterList.some(
-                    (el) => el[0] === coord[0] && el[1] === coord[1]
-                  )
-                    ? "bg-blue-200"
-                    : shipShotsList.some(
-                        (el) => el[0] === coord[0] && el[1] === coord[1]
-                      )
-                    ? "bg-red-200"
-                    : "bg-gray-50";
                   return (
                     <div
                       className={classnames(
-                        "col-span-1 row-span-1 border w-full h-full ",
-                        cellBgClass
+                        "col-span-1 row-span-1 border w-full h-full bg-gray-50",
+                        {
+                          "bg-blue-200": waterList.some(
+                            (el) => el[0] === coord[0] && el[1] === coord[1]
+                          ),
+                        },
+                        {
+                          "bg-red-200": shipShotsList.some(
+                            (el) => el[0] === coord[0] && el[1] === coord[1]
+                          ),
+                        }
                       )}
                       onClick={() => onClickBoard(coord)}
                     ></div>
