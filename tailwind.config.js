@@ -3,9 +3,12 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      spacing: {
+        full: "100%",
+      },
       gridTemplateRows: {
         // Simple 10 row grid
-        8: "repeat(10, minmax(0, 1fr))",
+        10: "repeat(10, minmax(0, 1fr))",
       },
     },
   },
