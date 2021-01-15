@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { player2Layout } from "./playerLayout";
+import classnames from "classnames";
 
 function createBoard() {
   const grid = [];
@@ -73,22 +74,26 @@ export default function Home() {
           <div className="h-full md:w-8/12 p-20">
             <div className="w-full pb-full relative">
               <div className="top-0 left-0 absolute h-full w-full grid grid-cols-10 grid-rows-10 border-4 border-yellow-400">
-                {grid.flat().map((coord) => (
-                  <div
-                    className="col-span-1 row-span-1 border w-full h-full bg-gray-50"
-                    onClick={() => onClickBoard(coord)}
-                  >
-                    {waterList.some(
-                      (el) => el[0] === coord[0] && el[1] === coord[1]
-                    )
-                      ? "w"
-                      : shipShotsList.some(
-                          (el) => el[0] === coord[0] && el[1] === coord[1]
-                        )
-                      ? "s"
-                      : "n"}
-                  </div>
-                ))}
+                {grid.flat().map((coord) => {
+                  const cellBgClass = waterList.some(
+                    (el) => el[0] === coord[0] && el[1] === coord[1]
+                  )
+                    ? "bg-blue-200"
+                    : shipShotsList.some(
+                        (el) => el[0] === coord[0] && el[1] === coord[1]
+                      )
+                    ? "bg-red-200"
+                    : "bg-gray-50";
+                  return (
+                    <div
+                      className={classnames(
+                        "col-span-1 row-span-1 border w-full h-full ",
+                        cellBgClass
+                      )}
+                      onClick={() => onClickBoard(coord)}
+                    ></div>
+                  );
+                })}
               </div>
             </div>
           </div>
