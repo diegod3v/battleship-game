@@ -1,3 +1,7 @@
+# DEMO
+
+battleship-game-gianfe3gy.vercel.app
+
 This is a minimal Battleship game using [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -13,6 +17,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to start the game.
 
 Refresh the page to clear the game state
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
