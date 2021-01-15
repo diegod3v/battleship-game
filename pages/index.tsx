@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { player2Layout } from "./playerLayout";
+import { player2Layout } from "../playerLayout";
 import classnames from "classnames";
 
 function createBoard() {
