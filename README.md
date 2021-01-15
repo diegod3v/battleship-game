@@ -1,6 +1,6 @@
 # DEMO
 
-battleship-game-gianfe3gy.vercel.app
+[battleship-game-gianfe3gy.vercel.app](battleship-game-gianfe3gy.vercel.app)
 
 This is a minimal Battleship game using [Next.js](https://nextjs.org/) bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
