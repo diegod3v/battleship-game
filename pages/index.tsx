@@ -22,7 +22,13 @@ const { shipTypes, layout } = player2Layout;
 export default function Home() {
   const [waterList, setWaterList] = useState([]);
   const [shipShotsList, setShipShotsList] = useState([]);
-  const [ships, setShips] = useState({});
+  const [ships, setShips] = useState({
+    carrier: 0,
+    battleship: 0,
+    cruiser: 0,
+    submarine: 0,
+    destroyer: 0,
+  });
   const onClickBoard = useCallback(
     (coord: [number, number]) => {
       let currentShipShot;
@@ -64,11 +70,13 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <div>Carrier: {shipTypes.carrier.size}</div>
-              <div>Battlehsip: {shipTypes.battleship.size}</div>
-              <div>Cruiser: {shipTypes.cruiser.size}</div>
-              <div>Submarine: {shipTypes.submarine.size}</div>
-              <div>Destroyer: {shipTypes.destroyer.size}</div>
+              <div>Carrier: {shipTypes.carrier.size - ships.carrier}</div>
+              <div>
+                Battlehsip: {shipTypes.battleship.size - ships.battleship}
+              </div>
+              <div>Cruiser: {shipTypes.cruiser.size - ships.cruiser}</div>
+              <div>Submarine: {shipTypes.submarine.size - ships.submarine}</div>
+              <div>Destroyer: {shipTypes.destroyer.size - ships.destroyer}</div>
             </div>
           </div>
           <div className="h-full md:w-8/12 p-20">
