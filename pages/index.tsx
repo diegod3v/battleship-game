@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { player2Layout } from "../playerLayout";
-import classnames from "classnames";
 import PlayersBoard from "../components/PlayersBoard";
 import GameGrid from "../components/GameGrid";
 import { createBoard } from "../helpers/createBoard";
@@ -12,7 +11,7 @@ const { shipTypes, layout } = player2Layout;
 
 export default function Home() {
   const [p1Score, setP1Score] = useState(0);
-  const [p2Score, setP2Score] = useState(0);
+  const [p2Score] = useState(0);
   const [waterList, setWaterList] = useState([]);
   const [shipShotsList, setShipShotsList] = useState([]);
   const [ships, setShips] = useState({
