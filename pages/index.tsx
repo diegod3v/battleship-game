@@ -62,18 +62,22 @@ export default function Home() {
   return (
     <div>
       <div className="container mx-auto h-screen">
-        <div className="flex h-full">
-          <div className="md:w-4/12 h-20 px-8 py-20">
-            <PlayersBoard scoreP1={p1Score} scoreP2={p2Score} />
-            <ShipsCounter shipTypes={shipTypes} shipShotsCount={ships} />
-          </div>
-          <div className="h-full md:w-8/12 p-20">
+        <div className="flex flex-col md:flex-row flex-wrap md:flex-nowrap h-full">
+          <div className="w-full md:w-8/12 md:order-2 md:h-full p-0 sm:p-8 md:p-20">
             <GameGrid
               grid={grid}
               shipShotsList={shipShotsList}
               waterShotsList={waterList}
               onClickBoard={onClickBoard}
             />
+          </div>
+          <div className="sm:w-full md:w-4/12 md:order-1 flex flex-wrap h-20 px-0 sm:px-4 md:px-8 md:py-20">
+            <div className="w-full sm:w-1/4 md:w-full">
+              <PlayersBoard scoreP1={p1Score} scoreP2={p2Score} />
+            </div>
+            <div className="w-full sm:w-3/4 md:w-full">
+              <ShipsCounter shipTypes={shipTypes} shipShotsCount={ships} />
+            </div>
           </div>
         </div>
       </div>
